@@ -8,7 +8,9 @@ This repository illustrates how the simplelink sdk by Texas Instruments can be u
 ## project configuration
 The SimpleLink SDK is using a configuration tooling called [SysConfig](docs/getting_started_with_sysconfig.pdf) to configure the projects in the compile time. In the following, the configurations used for this project are explained.
 
-**GPIO:** in this project we use the buttons and leds on the launchpads, so we should configure them properly in the compile time. This includes the tocken used for identifications of the pins and type of the pins.
+**GPIO:** in this project we use the buttons and leds on the launchpads, so we should configure them properly in the compile time. This includes the tocken used for identifications of the pins and type of the pins. Particularly, as shown below, we add four GPIO items for two buttons and two LEDs on the launchpad board. We set the mode to output for the LED and input for the buttons. Also, we enable the interrupt for the button pins:
+
+![gpio_sysconfig_image](/docs/images/GPIO_Sysconfig.png)
 
 **UART:** another peripheral that utilize in this project is the UART. To properly initiate the uart driver we need to make some compile time settings like baudrates, blocking behaviour, and a token representing the peripheral.
 
