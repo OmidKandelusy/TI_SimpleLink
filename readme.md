@@ -16,7 +16,12 @@ The SimpleLink SDK is using a configuration tooling called [SysConfig](docs/gett
 
 ![uart_sysconfig_image](/docs/images/UART_Sysconfig.png)
 
-**Radio:** in order to set up and use the radio core in a way that we are interested, we should configure several parameters via the sysconfig and during the compile time including, data rate, bandwidth, frequency ranges, modulation schemes, transmit power.
+**Radio:** in order to set up and use the radio core in a way that we are interested, we should configure several parameters via the sysconfig and during the compile time including, data rate, bandwidth, frequency ranges, modulation schemes, transmit power. For this project, we are interested in creating a custom and proprietary the subGHz connectivity and therefore we add custom radio object to the sysconfig as
+
+![radio_sysconfig_image](/docs/images/radio_sysconfig.png)
+
+Note: since this example is intended for the use in the EU region, the default frequency range is set to 868MHz. Furthermore, to configure the radio core properly, there are more dependencies to set up in the sysconfig as well. In details, 
+- code export: we should set this custom
 
 
 This is a work in progress and this readme file will be updated soon.
