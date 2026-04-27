@@ -36,7 +36,7 @@ int uart_init(uart_read_cb cb){
     params.readReturnMode = UART2_ReadReturnMode_PARTIAL;
 
 
-    handle = UART2_open(CONFIG_UART2_0, &params);
+    handle = UART2_open(CONFIG_UART_OBJ, &params);
     if (!handle){
         return -1;
     }
