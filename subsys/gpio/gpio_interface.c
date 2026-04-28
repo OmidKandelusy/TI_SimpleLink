@@ -4,7 +4,7 @@
 // ====================================================================================
 // gpio interface APIs
 
-void gpio_init(button_cb_t *button_one_cb, button_cb_t *button_two_cb){
+int gpio_init(button_cb_t button_one_cb, button_cb_t button_two_cb){
 
     if (!button_one_cb || !button_one_cb) return -1;
 
@@ -16,6 +16,8 @@ void gpio_init(button_cb_t *button_one_cb, button_cb_t *button_two_cb){
 
     GPIO_setCallback(CONFIG_LEFT_BUTTON, button_one_cb);
     GPIO_setCallback(CONFIG_RIGHT_BUTTON, button_two_cb);
+
+    return 0;
 }
 
 

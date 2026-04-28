@@ -17,9 +17,15 @@
 
 /** inlcuding the application subsystem headers */
 #include "gpio/gpio_interface.h"
-#include "uart/uart_interface.h"
-#include "wireless/radio_interface.h"
-#include "work/t_work.h"
+
+
+void left_button_cb(uint8_t data){
+    //
+}
+
+void right_button_cb(uint8_t data){
+    //
+}
 
 
 void *mainThread(void *arg0)
@@ -27,31 +33,8 @@ void *mainThread(void *arg0)
     int ret = 0;
 
     // initializing the subsystems
-    ret = gpio_init();
+    ret = gpio_init(left_button_cb, right_button_cb);
     if (ret < 0) while (1);
 
-    ret = uart_init();
-    if (ret < 0) while (1);
-
-    ret = radio_init();
-    if (ret <0) while (1);
-
-    ret = work_init(&heartbit_work);
-    if (ret <0 ) while (1);
-
-    ret = work_init(&shell_work);
-    if (ret < 0) while (1);
-
-    ret = work_init(&button_work);
-    if (ret <0) while (1);
-
-    ret = work_init(&radio_work);
-    if (ret < 0) while (1);
-
-    // starting the main subroutines
-    work_start(&hearbit_work);
-    work_start(&button_work);
-    work_start(&shell_work);
-    work_start(&radio_work);
-
+    return 0;
 }

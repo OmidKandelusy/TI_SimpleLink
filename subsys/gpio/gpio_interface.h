@@ -9,6 +9,7 @@
 
 /** gpio driver header files */
 #include <ti/drivers/GPIO.h>
+#include "ti_drivers_config.h"
 
 // ====================================================================================
 // typedefs and macros
@@ -25,8 +26,10 @@ typedef void (*button_cb_t)(uint8_t state);
  * 
  * @param [in] button_one_cb function handler to register for button 1
  * @param [in] button_two_cb function handler to register for button 2
+ *
+ * @return 0 on success, returns negative error code if fails
  */
-void gpio_init(button_cb_t *button_one_cb, button_cb_t *button_two_cb);
+int gpio_init(button_cb_t button_one_cb, button_cb_t button_two_cb);
 
 /**
  * @brief turns on the green led on the launchpad
