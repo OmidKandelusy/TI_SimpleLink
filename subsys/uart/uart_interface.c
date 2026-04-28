@@ -8,7 +8,7 @@
 static UART2_Handle handle;
 static UART2_Params params;
 static int read_bytes = 0;
-static uint8_t read_buff[READ_BUFF_SIZE]
+static uint8_t read_buff[READ_BUFF_SIZE];
 
 /** user callback registery for the read events */
 static uart_read_cb user_cb = NULL;
@@ -45,6 +45,8 @@ int uart_init(uart_read_cb cb){
 
     const char init_msg[] = "\n\r uart interface is initialized \n\r";
     UART2_write(handle, init_msg, sizeof(init_msg), NULL);
+
+    user_cb = cb;
 
     return 0;
 };

@@ -19,6 +19,9 @@
 /** the size of the buffer that holds the bytes read from the line */
 #define READ_BUFF_SIZE 64
 
+/** uart read callback type */
+typedef void (*uart_read_cb)(uint8_t *data, uint16_t len);
+
 // ========================================================================================
 // APIs
 

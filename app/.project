@@ -28,6 +28,11 @@
 			<type>1</type>
 			<locationURI>ANCHOR/subsys/gpio/gpio_interface.c</locationURI>
 		</link>
+		<link>
+			<name>uart_interface.c</name>
+			<type>1</type>
+			<locationURI>ANCHOR/subsys/uart/uart_interface.c</locationURI>
+		</link>
 	</linkedResources>
 	<variableList>
 		<variable>
