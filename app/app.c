@@ -18,6 +18,7 @@
 /** inlcuding the application subsystem headers */
 #include "gpio/gpio_interface.h"
 #include "uart/uart_interface.h"
+#include "wireless/radio_interface.h"
 
 
 void left_button_cb(uint8_t data){
@@ -43,6 +44,9 @@ void *mainThread(void *arg0)
 
     ret = uart_init(uart_read_handler);
     if (ret < 0) while (1);
+
+    ret = radio_init();
+    if (ret < 0) while(1);
 
     return 0;
 }

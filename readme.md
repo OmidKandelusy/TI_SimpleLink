@@ -16,6 +16,7 @@ The SimpleLink SDK is using a configuration tooling called [SysConfig](docs/gett
 
 Note: since this example is intended for the use in the EU region, the default frequency range is set to 868MHz. Furthermore, to configure the radio core properly, there are more dependencies to set up in the sysconfig as well. In details, 
 - code export: we should set this custom
+- RF design: add one RF design and set Use Hardware to the SKY antenna selector
 
 ## setup and build
 In order to build the projects in this repository, it is needed to add the `ANCHOR` path variable to the code composer studio. To do so, go to project properties, then variables from the general tab. There add a new path variable where the name must be `ANCHOR` and the value must be the path to the repository on the host machine. This variable is used to properly pull in differnet source and header files into the build sysytem.

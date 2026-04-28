@@ -22,7 +22,7 @@ static uint8_t* packetDataPointer;
 static uint8_t packet[MAX_LENGTH + NUM_APPENDED_BYTES - 1];
 
 /** transmitting packet varaibles and parameters */
-static uint8_t tx_packet[PAYLOAD_LENGTH];
+static uint8_t tx_packet[AIR_PAYLOAD_LENGTH];
 // ====================================================================================
 // helper functions
 
@@ -35,11 +35,11 @@ void rx_callback(RF_Handle h, RF_CmdHandle ch, RF_EventMask e)
         /* Get current unhandled data entry */
         currentDataEntry = RFQueue_getDataEntry(); //loads data from entry
 
-        /* Handle the packet data, located at &currentDataEntry->data:
-        packetLength      = *(uint8_t*)(&currentDataEntry->data); //gets the packet length (send over with packet)
-        packetDataPointer = (uint8_t*)(&currentDataEntry->data + 1); //data starts from 2nd byte
-
-        /* Copy the payload + the status byte to the packet variable */
+        /** Handle the packet data, located at &currentDataEntry->data:
+            packetLength      = *(uint8_t*)(&currentDataEntry->data); //gets the packet length (send over with packet)
+            packetDataPointer = (uint8_t*)(&currentDataEntry->data + 1); //data starts from 2nd byte
+            Copy the payload + the status byte to the packet variable 
+        */
         memcpy(packet, packetDataPointer, (packetLength + 1));
 
         /* Move read entry pointer to next entry */
@@ -103,7 +103,7 @@ int radio_init(void){
     // updating the tx ari packet
     memcpy(tx_packet, data, safe_size);
 
-    RF_EventMask RF_ret = RF_runCmd(rfHandle, (RF_Op*)&RF_cmdPropTx,
+    RF_EventMask RF_ret = RF_runCmd(rf_handle, (RF_Op*)&RF_cmdPropTx,
                                           RF_PriorityNormal, NULL, 0);
     
     return 0;
@@ -112,7 +112,7 @@ int radio_init(void){
 
  int radio_receive(void){
 
-    rf_handle = RF_postCmd(rfHandle, (RF_Op*)&RF_cmdPropRx, RF_PriorityNormal, rx_callback, RF_EventRxEntryDone);
+    rf_cmd_handle = RF_postCmd(rf_handle, (RF_Op*)&RF_cmdPropRx, RF_PriorityNormal, rx_callback, RF_EventRxEntryDone);
 
     return 0;
  }
