@@ -8,9 +8,9 @@ This repository illustrates how the simplelink sdk by Texas Instruments can be u
 ## project configuration
 The SimpleLink SDK is using a configuration tooling called [SysConfig](docs/getting_started_with_sysconfig.pdf) to configure the projects in the compile time. In the following, the configurations used for this project are explained.
 
-**GPIO:** in this project we use the buttons and leds on the launchpads, so we should configure them properly in the compile time. This includes the tocken used for identifications of the pins and type of the pins. Particularly, opening the sysconfig GUI in the CCS as the screenshot [here](/docs/images/GPIO_Sysconfig.png), we add four GPIO items for two buttons and two LEDs on the launchpad board. We set the mode to output for the LED and input for the buttons. Also, we enable the interrupt for the button pins.
+**GPIO:** in this project we use the buttons and leds on the launchpads, so we should configure them properly in the compile time. This includes the token used for identifications of the pins and type of the pins. Particularly, opening the sysconfig GUI in the CCS as the screenshot [here](/docs/images/GPIO_Sysconfig.png), we add four GPIO items for two buttons and two LEDs on the launchpad board. We set the mode to output for the LED and input for the buttons. Also, we enable the interrupt for the button pins.
 
-**UART:** another peripheral that utilize in this project is the UART. To properly initiate the uart driver we need to make some compile time settings like pin multiplexing, blocking behaviour, and a token representing the peripheral. Particulary, similar to the gpio case, we use the the sysconfig GUI to add an UART instance with our desirable configurations as the screenshot [here](/docs/images/UART_Sysconfig.png).
+**UART:** another peripheral that utilize in this project is the UART. To properly initiate the uart driver we need to make some compile time settings like pin multiplexing, blocking behavior, and a token representing the peripheral. Particulary, similar to the gpio case, we use the the sysconfig GUI to add an UART instance with our desirable configurations as the screenshot [here](/docs/images/UART_Sysconfig.png).
 
 **Radio:** in order to set up and use the radio core in a way that we are interested, we should configure several parameters via the sysconfig and during the compile time including, data rate, bandwidth, frequency ranges, modulation schemes, transmit power. For this project, we are interested in creating a custom and proprietary the subGHz connectivity and therefore we add custom radio object to the sysconfig as the screenshot [here](/docs/images/radio_sysconfig.png).
 
@@ -19,4 +19,8 @@ Note: since this example is intended for the use in the EU region, the default f
 - RF design: add one RF design and set Use Hardware to the SKY antenna selector
 
 ## setup and build
-In order to build the projects in this repository, it is needed to add the `ANCHOR` path variable to the code composer studio. To do so, go to project properties, then variables from the general tab. There add a new path variable where the name must be `ANCHOR` and the value must be the path to the repository on the host machine. This variable is used to properly pull in differnet source and header files into the build sysytem.
+In order to build the projects in this repository, it is needed to add the `ANCHOR` path variable to the code composer studio. To do so, go to project properties, then variables from the general tab. There add a new path variable where the name must be `ANCHOR` and the value must be the path to the repository on the host machine. This variable is used to properly pull in different source and header files into the build sysytem.
+
+
+# Release Note:
+The current version of the application, that is being built incrementally, would be operating in an override mode without any task queue. Once the first version of the app is completed as tagged, the next version of the application would evolve into a priority queue based for application events.
