@@ -10,7 +10,6 @@
 // ===============================================================================
 // subsystem functions
 
-
 int work_init(t_work_t *t_work){
     if (!t_work) return T_WORK_NULL_POINTER;
 
@@ -50,3 +49,10 @@ int work_init(t_work_t *t_work){
 }
 
 
+
+int work_schedule(t_work_t *t_work, uint32_t timeout_ticks){
+    if (!t_work) return T_WORK_NULL_POINTER;
+    if (timeout_ticks == 0 ) return T_WORK_ZERO_TIMEOUT_ENCOUNTERED;
+
+    Clock_setTimeout(t_work->ti_clock_handle, timeout_ticks);
+}
