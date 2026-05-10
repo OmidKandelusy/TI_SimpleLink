@@ -19,8 +19,22 @@ Note: since this example is intended for the use in the EU region, the default f
 - RF design: add one RF design and set Use Hardware to the SKY antenna selector
 
 ## setup and build
-In order to build the projects in this repository, it is needed to add the `ANCHOR` path variable to the code composer studio. To do so, go to project properties, then variables from the general tab. There add a new path variable where the name must be `ANCHOR` and the value must be the path to the repository on the host machine. This variable is used to properly pull in different source and header files into the build sysytem.
+In order to build the projects in this repository, it is needed to add the `ANCHOR` path variable to the code composer studio. To do so, go to project properties, then variables from the general tab. There add a new path variable where the name must be `ANCHOR` and the value must be the path to the repository on the host machine. This variable is used to properly pull in different source and header files into the build system.
 
+## Running the app
+The target platform for this repository is cc1352p7-1. There are two great boards that can be used to test the firmware. The first one is the launchpad development board by Texas Instruments and the second one is the Beagle Connect freedom. However, to work with the beagle board there are a few important things that needed to be paid attention to because the beagle board does not expose JTAG or SWD pins for debugger and relies on the rom bootloader.So, before flashing anything , it is critical to enable the bootloader on the firmware as:
+
+    1. Go to sysconfig, then device configuration tab
+    2. check the `Enable Bootloader`
+    3. check the `Enable Bootloader Backdoor`
+    4. set the backdoor gpio pin to the boards reboot pin which is `DIO15`
+    5. set the trigger level of bootloader backdoor to `Active Low`
+
+In order to flash, first install the python flasher tool as 
+- pip install cc1352p7-flasher
+
+Next, use the flasher script as
+- cc1352-flasher -p /dev/ttyUSBx -e -w -v your_firmware.hex
 
 # Release Note:
 The current version of the application, that is being built incrementally, would be operating in an override mode without any task queue. Once the first version of the app is completed as tagged, the next version of the application would evolve into a priority queue based for application events.
